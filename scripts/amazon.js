@@ -21,6 +21,15 @@ rating:{
         star : 4.5,
         count : 56
     }
+},{
+image : "https://supersimple.dev/projects/amazon/images/products/black-2-slot-toaster.jpg",
+name : "2 Slot Toaster - Black",
+priceCents : 1899,
+rating : {
+  star : 4.5,
+  count : 56
+}
+
 }
 ];
 let productsHTML = '';
