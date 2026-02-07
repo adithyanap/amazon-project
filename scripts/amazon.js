@@ -1,7 +1,4 @@
 let productsHTML = '';
-
-
-
 products.forEach(function(product) {
     const html = `<div class="product-container">
           <div class="product-image-container">
@@ -47,10 +44,16 @@ products.forEach(function(product) {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary addToCart">
             Add to Cart
           </button>
         </div>`;
         productsHTML += html;
 })
 document.querySelector('.products-grid').innerHTML = productsHTML;
+document.querySelectorAll('.addToCart')
+  .forEach((button) => {
+   button.addEventListener('click',() => {
+    console.log("button is pressed");
+   });
+});
