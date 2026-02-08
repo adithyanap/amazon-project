@@ -1,6 +1,8 @@
+import {cart} from '../data/cart.js';
+
 let productsHTML = '';
-products.forEach(function(product) {
-    const html = `<div class="product-container">
+products.forEach(function (product) {
+  const html = `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -12,14 +14,14 @@ products.forEach(function(product) {
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${(product.rating.stars *10)}.png">
+              src="images/ratings/rating-${(product.rating.stars * 10)}.png">
             <div class="product-rating-count link-primary">
               87
             </div>
           </div>
 
           <div class="product-price">
-           $ ${(product.priceCents/100)}
+           $ ${(product.priceCents / 100)}
           </div>
 
           <div class="product-quantity-container">
@@ -48,27 +50,32 @@ products.forEach(function(product) {
             Add to Cart
           </button>
         </div>`;
-        productsHTML += html;
+  productsHTML += html;
 })
 document.querySelector('.products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.addToCart')
   .forEach((button) => {
-   button.addEventListener('click',() => {
-    let matchingItem ;
-    cart.forEach((item) => {
-      if(item.id ===  button.dataset.id){
-        matchingItem = item;
-      } });
-      if (matchingItem){
+    button.addEventListener('click', () => {
+      let cartNo = 0;
+      let matchingItem;
+      cart.forEach((item) => {
+        if (item.id === button.dataset.id) {
+          matchingItem = item;
+        }
+      });
+      if (matchingItem) {
         matchingItem.quantity += 1;
-      }else{
-      cart.push({
-        id : button.dataset.id,
-        quantity : 1
+      } else {
+        cart.push({
+          id: button.dataset.id,
+          quantity: 1
+        });
+      }
+
+      cart.forEach((item) => {
+        cartNo += item.quantity;
+      })
+      document.querySelector('.cart-quantity').innerHTML = cartNo;
     });
-  }
-     
-      console.log(cart);
-      
-   });
-});
+    
+  });
