@@ -6,7 +6,7 @@ products.forEach(function(product) {
               src="${product.image}">
           </div>
 
-          <div class="product-name limit-text-to-2-lines">
+          <div class="product-name limit-text-to-2-lines" >
            ${product.name}
           </div>
 
@@ -44,7 +44,7 @@ products.forEach(function(product) {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary addToCart">
+          <button class="add-to-cart-button button-primary addToCart" data-name = "${product.name}">
             Add to Cart
           </button>
         </div>`;
@@ -54,6 +54,21 @@ document.querySelector('.products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.addToCart')
   .forEach((button) => {
    button.addEventListener('click',() => {
-    console.log("button is pressed");
+    let matchingItem ;
+    cart.forEach((item) => {
+      if(item.name ===  button.dataset.name){
+        matchingItem = item;
+      } });
+      if (matchingItem){
+        matchingItem.quantity += 1;
+      }else{
+      cart.push({
+        name : button.dataset.name,
+        quantity : 1
+    });
+  }
+     
+      console.log(cart);
+      
    });
 });
