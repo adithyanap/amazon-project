@@ -1,36 +1,8 @@
+import {cart} from '../data/cart.js'
 let cartTotal = '';
 let c = '';
-const cart1 = [
-  {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-    rating: {
-      stars: 4.5,
-      count: 87
-    },
-    priceCents: 1090,
-    keywords: [
-      "socks",
-      "sports",
-      "apparel"
-    ]
-  },
-  {
-    id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    image: "images/products/intermediate-composite-basketball.jpg",
-    name: "Intermediate Size Basketball",
-    rating: {
-      stars: 4,
-      count: 127
-    },
-    priceCents: 2095,
-    keywords: [
-      "sports",
-      "basketballs"
-    ]
-  }]
-cart1.forEach(function (item) {
+
+cart.forEach(function (item) {
   c =  `
     <div class="cart-item-container">
       <div class="delivery-date">
@@ -53,7 +25,7 @@ cart1.forEach(function (item) {
               Quantity: <span class="quantity-label">2</span>
             </span>
             <span class="update-quantity-link link-primary">Update</span>
-            <span class="delete-quantity-link link-primary">Delete</span>
+            <span class="delete-quantity-link link-primary delete-link" data-id= "${item.id}" >Delete</span>
           </div>
         </div>
 
@@ -99,3 +71,12 @@ cart1.forEach(function (item) {
 });
 
 document.querySelector('.order-summary').innerHTML = cartTotal;
+
+document.querySelectorAll('.delete-link')
+  .forEach((link) => {
+    link.addEventListener('click',() => {
+      const productId = link.dataset.id;
+      console.log(productId);
+    });
+
+  });
