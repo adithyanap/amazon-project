@@ -1,7 +1,8 @@
-export let  cart= [
+export let cart= JSON.parse(localStorage.getItem("cart"));
 
-]
-
+function local(){
+  localStorage.setItem("cart",JSON.stringify(cart));
+}
 export function addToCart(){
   document.querySelectorAll('.addToCart')
   .forEach((button) => {
