@@ -1,10 +1,10 @@
-import {cart} from '../data/cart.js'
+import {cart,remove} from '../data/cart.js'
 let cartTotal = '';
 let c = '';
-
+function render(){
 cart.forEach(function (item) {
   c =  `
-    <div class="cart-item-container">
+    <div class="cart-item-container js-cart-item-${item.id}">
       <div class="delivery-date">
         Delivery date: Tuesday, June 21
       </div>
@@ -71,12 +71,16 @@ cart.forEach(function (item) {
 });
 
 document.querySelector('.order-summary').innerHTML = cartTotal;
+}
+render();
 
 document.querySelectorAll('.delete-link')
   .forEach((link) => {
     link.addEventListener('click',() => {
       const productId = link.dataset.id;
-      console.log(productId);
+      remove(productId);
+     
+      const container = document.querySelector(`.js-cart-item-${productId}`);
+      container.remove();
     });
-
   });
