@@ -26,6 +26,7 @@ export function addToCart(){
           quantity: 1
         
         });
+        local();
         
       }
       console.log(cart);
@@ -33,11 +34,13 @@ export function addToCart(){
       cart.forEach((item) => {
         cartNo += item.quantity;
       });
+      local();
       
       document.querySelector('.cart-quantity').innerHTML = cartNo;
     });
     
   });
+  
 }
 export function remove(productId){
   let cartNew = [];
@@ -49,4 +52,5 @@ export function remove(productId){
   
 );
 cart = cartNew;
+local();
 }

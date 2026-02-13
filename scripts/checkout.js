@@ -74,6 +74,11 @@ cart.forEach(function (item) {
   });
   
   cartTotal += c; 
+  let cartLength = 0;
+  cart.forEach(function(i){
+    cartLength += 1;
+  });
+  document.querySelector(".return-to-home-link").innerHTML  = `item ${cartLength}`;
 });
 
 document.querySelector('.order-summary').innerHTML = cartTotal;
